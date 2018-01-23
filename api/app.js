@@ -22,9 +22,14 @@ app.use(bodyParser.json());
 // rutas
 app.get('/',(req,res)=>{
     res.status(200).send({
-        message: 'Hello'
+        message: 'Hello GET'
     });
 });
 
+app.post('/',(req,res)=>{
+    res.status(200).send({
+        message: 'Hello POST'
+    });
+});
 // exportar
 module.exports = app;
