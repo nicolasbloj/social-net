@@ -9,27 +9,18 @@ var bodyParser = require('body-parser');
 // load framework
 var app = express();
 
-// cargar rutas
+// load routes
+var user_routes = require('./routes/user');
 
-
-// middlewares
+// MIDDLEWARES, con el metodo app.use(..) definimos middlewares
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 // cors
 
+// routes
+app.use('/api',user_routes);
 
-// rutas
-app.get('/',(req,res)=>{
-    res.status(200).send({
-        message: 'Hello GET'
-    });
-});
 
-app.post('/',(req,res)=>{
-    res.status(200).send({
-        message: 'Hello POST'
-    });
-});
-// exportar
+// export
 module.exports = app;
