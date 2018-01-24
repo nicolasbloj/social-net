@@ -8,5 +8,6 @@ var api = express.Router();
 
 api.get('/home', UserController.home);
 api.post('/about', UserController.about);
+api.post('/save-user', UserController.save);
 
 module.exports = api;
