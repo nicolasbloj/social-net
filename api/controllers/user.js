@@ -86,8 +86,44 @@ function save(req, res) {
 
 }
 
+function login(req, res) {
+    var params = req.body;
+
+    var email = params.email;
+    var password = params.password;
+
+    // Uso de operador and (Se separan las condiciones con comas)
+    User.findOne({ email: email },// Este tercer parametro es lo mismo que usar .exec()
+        (err, user) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'Error en la petición'
+                });
+            }
+            if (user) {
+                bcrypt.compare(password, user.password, (err, check) => {
+                    if (check) {
+                        return res.status(200).send({
+                            user
+                        });
+                    } else {
+                        return res.status(404).send({
+                            message: 'El usuario no ha podido identificar, password incorrecta'
+                        });
+                    }
+                });
+            } else {
+                return res.status(404).send({
+                    message: 'El usuario no ha podido identificar,email incorrecto'
+                });
+            }
+        });
+}
+
+
 module.exports = {
     home,
     about,
-    save
+    save,
+    login
 }
