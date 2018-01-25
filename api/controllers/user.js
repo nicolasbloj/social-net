@@ -63,6 +63,7 @@ function save(req, res) {
                             });
                         }
                         if (userStored) {
+                            user.password = undefined;
                             res.status(200).send({
                                 user: userStored
                             });
@@ -103,6 +104,7 @@ function login(req, res) {
             if (user) {
                 bcrypt.compare(password, user.password, (err, check) => {
                     if (check) {
+                        user.password = undefined;
                         return res.status(200).send({
                             user
                         });
