@@ -46,17 +46,24 @@ Install robo 3t
 
 create direct connection
 
-----------0----------
-
-APP
+----------APP----------
 
 Install dependencies:
 
       social-net/api $ npm install
 
 Init app:
-     
+      social-net $ cd api
       social-net/api $ npm start
 
+----------Robo 3t----------
 
+Create database 
+      
+      social-net 
+     
+Create collections
 
+      users
+      follows
+      ...
