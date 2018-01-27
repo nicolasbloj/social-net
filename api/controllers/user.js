@@ -131,10 +131,31 @@ function login(req, res) {
         });
 }
 
+function getUser(req, res) {
+    //Cuando nos llegan datos por post o put utilizamos res.body
+    //Cuando nos llegan datos por url utilizamos res.params
+    var userId = req.params.id;
+
+    User.findById(userId, (err, user) => {
+        if (err)
+            return res.status(500).send({ message: 'error en la peticion' });
+
+        if (!user)
+            return res.status(404).send({ message: 'el usuario no existe' });
+
+        user.password = undefined;
+        return res.status(200).send({
+            user
+        });
+
+    });
+
+}
 
 module.exports = {
     home,
     about,
     save,
-    login
+    login,
+    getUser
 }
