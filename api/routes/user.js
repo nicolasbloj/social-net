@@ -13,6 +13,7 @@ api.get('/about', middleware_auth.ensureAuth, UserController.about); // next(): 
 api.post('/save-user', UserController.save);
 api.post('/login', UserController.login);
 api.get('/user/:id', middleware_auth.ensureAuth, UserController.getUser);
+api.get('/users/:page?',middleware_auth.ensureAuth, UserController.getUsers);
 // parametro opcional, agregamos signo ?  ->  /user/:id?
 
 module.exports = api;
